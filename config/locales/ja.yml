@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    modeles:
+      user: ユーザー
+    attributes:
+      user:
+        password: パスワード
+        encrypted_password: パスワード
+        password_confirmation: 確認用パスワード
+        email: メールアドレス
+        nickname: ニックネーム
+        last_name: 氏名
+        family_name: 苗字
+        j_last_name: 氏名のカナ表記
+        j_family_name: 苗字のカナ表記
+        birthday: 生年月日
