@@ -39,7 +39,7 @@ RSpec.describe User, type: :model do
         expect(user2.errors.full_messages).to include('メールアドレスは既に使用されています。')
       end
 
-      it ' emalは＠を含む必要があること ' do
+      it ' emailは＠を含む必要があること ' do
         @user.email = 'aaatest'
         @user.valid?
         expect(@user.errors.full_messages).to include('メールアドレスは有効でありません。')
