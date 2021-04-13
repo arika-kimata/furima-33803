@@ -5,7 +5,6 @@ ja:
     attributes:
       user:
         password: パスワード
-        encrypted_password: パスワード
         password_confirmation: 確認用パスワード
         email: メールアドレス
         nickname: ニックネーム

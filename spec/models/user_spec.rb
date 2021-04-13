@@ -48,34 +48,34 @@ RSpec.describe User, type: :model do
       it ' パスワードが空では登録できないこと ' do
         @user.password = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include('パスワードが入力されていません。', '確認用パスワードが内容とあっていません。')
+        expect(@user.errors[:password]).to include('が入力されていません。', 'は半角英数字混合での入力が必須です。')
       end
 
       it ' パスワードは英字だけでは登録できない ' do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('確認用パスワードは半角英数字混合での入力が必須です。')
+        expect(@user.errors[:password]).to include('は半角英数字混合での入力が必須です。')
       end
 
       it ' パスワードは数字だけでは登録できない ' do
         @user.password = '111111'
         @user.password_confirmation = '111111'
         @user.valid?
-        expect(@user.errors.full_messages).to include('確認用パスワードは半角英数字混合での入力が必須です。')
+        expect(@user.errors[:password]).to include('は半角英数字混合での入力が必須です。')
       end
 
       it ' passwordが存在してもpassword_confirmationがない場合は登録できないこと ' do
         @user.password_confirmation = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include('確認用パスワードが内容とあっていません。', '確認用パスワードは半角英数字混合での入力が必須です。', '確認用パスワードが入力されていません。')
+        expect(@user.errors[:password_confirmation]).to include("が内容とあっていません。", "確認用パスワードとパスワードは一致しないといけません。", "は半角英数字混合での入力が必須です。", "が入力されていません。")
       end
 
       it ' パスワードと確認用パスワードの値が一致しないと登録できない ' do
         @user.password = 'aaa111'
         @user.password_confirmation = 'bbb222'
         @user.valid?
-        expect(@user.errors.full_messages).to include('確認用パスワードが内容とあっていません。')
+        expect(@user.errors[:password_confirmation]).to include("が内容とあっていません。", "確認用パスワードとパスワードは一致しないといけません。")
       end
 
       it ' passwordが5文字以下であれば登録できないこと ' do
