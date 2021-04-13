@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
     end
 
     context ' 新規登録できないとき ' do
-      it ' ikcnameがない場合は登録できないこと ' do
+      it ' nikcnameがない場合は登録できないこと ' do
         @user.nickname = ''
         @user.valid?
         expect(@user.errors.full_messages).to include('ニックネームが入力されていません。')
@@ -51,9 +51,16 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('パスワードが入力されていません。', '確認用パスワードが内容とあっていません。')
       end
 
-      it ' パスワードは半角英数字が混合されていないと登録できない ' do
+      it ' パスワードは英字だけでは登録できない ' do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('確認用パスワードは半角英数字混合での入力が必須です。')
+      end
+
+      it ' パスワードは数字だけでは登録できない ' do
+        @user.password = '111111'
+        @user.password_confirmation = '111111'
         @user.valid?
         expect(@user.errors.full_messages).to include('確認用パスワードは半角英数字混合での入力が必須です。')
       end
