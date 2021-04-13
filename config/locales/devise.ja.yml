@@ -15,6 +15,7 @@ ja:
         j_family_name: 苗字のカナ表記
         birthday: 生年月日
 
+
   devise:
     confirmations:
       confirmed: 'アカウントを登録しました。'
