@@ -1,4 +1,4 @@
-class Genre < ActiveHash::Base
+class Shipping_date < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
     { id: 2, name: '支払い後、1〜2日で発送' },

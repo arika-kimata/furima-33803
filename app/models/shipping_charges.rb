@@ -1,4 +1,4 @@
-class Genre < ActiveHash::Base
+class Shipping_charges < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
     { id: 2, name: '送料込み(あなたが負担)' },
