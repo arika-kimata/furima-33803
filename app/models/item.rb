@@ -23,19 +23,19 @@ class Item < ApplicationRecord
   validates :explanation, presence: true
 
   # カテゴリー
-  validates :category_id, presence: true
+  validates :category_id, presence: true, numericality: { other_than: 1 }
 
   # 商品の状態
-  validates :status_id , presence: true
+  validates :status_id , presence: true, numericality: { other_than: 1 }
 
   # 配送料の負担
-  validates :shipping_charges_id, presence: true
+  validates :shipping_charges_id, presence: true, numericality: { other_than: 1 }
 
   # 発送元の地域
-  validates :prefectures_id, presence: true
+  validates :prefectures_id, presence: true, numericality: { other_than: 1 }
 
   # 発送までの日数
-  validates :shipping_date_id, presence: true
+  validates :shipping_date_id, presence: true, numericality: { other_than: 1 }
 
   # 販売価格
   with_options presence: true,  format: { with: /\A[0-9]+\z/, message: 'は、半角数字で入力して下さい。' },
