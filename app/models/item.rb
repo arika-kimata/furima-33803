@@ -39,8 +39,7 @@ class Item < ApplicationRecord
   validates :shipping_date_id, presence: true
 
   # 販売価格
-  with_options presence: true,  format: { with: /\A[0-9]+\z/, message: 'は、半角数字で入力して下さい。' },
-               numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "は、300円から9,999,999円の間で入力して下さい。" }  do
+  with_options presence: true, numericality: { message: 'は、半角数字で入力して下さい。' }, format: { with: /\A[0-9]+\z/}, inclusion: { in: 300..9999999, message: "は、300円から9,999,999円の間で入力して下さい。" }  do
     validates :price
   end
 
