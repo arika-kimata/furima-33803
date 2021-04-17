@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   # バリデーション 
   
   # 商品画像
-
+  validates :image, presence: true
 
   # 商品名
   validates :product_name, presence: true
@@ -23,19 +23,20 @@ class Item < ApplicationRecord
   validates :explanation, presence: true
 
   # カテゴリー
-  validates :category_id, presence: true, numericality: { other_than: 1 }
+
+  validates :category_id, presence: true
 
   # 商品の状態
-  validates :status_id , presence: true, numericality: { other_than: 1 }
+  validates :status_id , presence: true
 
   # 配送料の負担
-  validates :shipping_charges_id, presence: true, numericality: { other_than: 1 }
+  validates :shipping_charges_id, presence: true
 
   # 発送元の地域
-  validates :prefectures_id, presence: true, numericality: { other_than: 1 }
+  validates :prefectures_id, presence: true
 
   # 発送までの日数
-  validates :shipping_date_id, presence: true, numericality: { other_than: 1 }
+  validates :shipping_date_id, presence: true
 
   # 販売価格
   with_options presence: true,  format: { with: /\A[0-9]+\z/, message: 'は、半角数字で入力して下さい。' },

@@ -13,6 +13,16 @@ ja:
         j_last_name: 氏名のカナ表記
         j_family_name: 苗字のカナ表記
         birthday: 生年月日
+      item:
+        image: 商品画像
+        product_name: 商品名
+        explanation: 商品の説明
+        category_id: カテゴリーの情報
+        status_id: 商品の状態
+        shipping_charges_id: 配送料の負担
+        prefectures_id: 発送元の地域
+        shipping_date_id: 発送までの日数
+        price: 販売価格
 
 
   devise:
