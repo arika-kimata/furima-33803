@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :require_login]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :authenticate_user!, except: [:index]
+  # before_action :set_item, only: [:show, :edit, :update]
 
   def index
     # @items = Item.order("created_at DESC")
@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    redirect_to '/users/sign_in' unless @item.user_id == current_user.id
+    redirect_to user_session_path unless @item.user_id == current_user.id
     if @item.save
       redirect_to root_path
     else

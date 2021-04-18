@@ -12,30 +12,21 @@ class Item < ApplicationRecord
 
   # バリデーション
 
-  # 商品画像
-  validates :image, presence: true
+  # 商品画像、商品名、商品説明
+  with_options presence: true do
+    validates :image
+    validates :product_name
+    validates :explanation
+  end
 
-  # 商品名
-  validates :product_name, presence: true
-
-  # 商品説明
-  validates :explanation, presence: true
-
-  # カテゴリー
-
-  validates :category_id, presence: true
-
-  # 商品の状態
-  validates :status_id, presence: true
-
-  # 配送料の負担
-  validates :shipping_charges_id, presence: true
-
-  # 発送元の地域
-  validates :prefectures_id, presence: true
-
-  # 発送までの日数
-  validates :shipping_date_id, presence: true
+  # カテゴリー、商品の状態、配送料の負担、発送元の地域、発送までの日数
+  with_options numericality: { greater_than_or_equal_to:1, message: 'が未選択です。' } do
+    validates :category_id
+    validates :status_id
+    validates :shipping_charges_id
+    validates :prefectures_id
+    validates :shipping_date_id
+  end
 
   # 販売価格
   with_options presence: true, numericality: { message: 'は、半角数字で入力して下さい。' }, format: { with: /\A[0-9]+\z/ },

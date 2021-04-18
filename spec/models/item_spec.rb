@@ -13,7 +13,7 @@ RSpec.describe Item, type: :model do
     end
 
     context ' 商品が出品できないとき ' do
-      it ' imageが体と出品できない ' do
+      it ' imageが空だと出品できない ' do
         @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('商品画像が入力されていません。')
@@ -32,33 +32,33 @@ RSpec.describe Item, type: :model do
       end
 
       it ' category_idが未選択だと出品できない ' do
-        @item.category_id = nil
+        @item.category_id = 0
         @item.valid?
-        expect(@item.errors[:category_id]).to include('が入力されていません。')
+        expect(@item.errors[:category_id]).to include('が未選択です。')
       end
 
       it ' status_idが未選択だと出品できない ' do
-        @item.status_id = nil
+        @item.status_id = 0
         @item.valid?
-        expect(@item.errors[:status_id]).to include('が入力されていません。')
+        expect(@item.errors[:status_id]).to include('が未選択です。')
       end
 
       it ' shipping_charges_idが未選択だと出品できない ' do
-        @item.shipping_charges_id = nil
+        @item.shipping_charges_id = 0
         @item.valid?
-        expect(@item.errors[:shipping_charges_id]).to include('が入力されていません。')
+        expect(@item.errors[:shipping_charges_id]).to include('が未選択です。')
       end
 
       it ' prefectures_idが未選択だと出品できない ' do
-        @item.prefectures_id = nil
+        @item.prefectures_id = 0
         @item.valid?
-        expect(@item.errors[:prefectures_id]).to include('が入力されていません。')
+        expect(@item.errors[:prefectures_id]).to include('が未選択です。')
       end
 
       it ' shipping_date_idが未選択だと出品できない ' do
-        @item.shipping_date_id = nil
+        @item.shipping_date_id = 0
         @item.valid?
-        expect(@item.errors[:shipping_date_id]).to include('が入力されていません。')
+        expect(@item.errors[:shipping_date_id]).to include('が未選択です。')
       end
 
       it ' priceが空だと出品できない ' do
@@ -70,6 +70,12 @@ RSpec.describe Item, type: :model do
 
       it ' priceが全角数字だと出品できない ' do
         @item.price = '１０００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('販売価格は、半角数字で入力して下さい。')
+      end
+
+      it ' 半角英語だけでは登録できないこと ' do
+        @item.price = 'yen'
         @item.valid?
         expect(@item.errors.full_messages).to include('販売価格は、半角数字で入力して下さい。')
       end
