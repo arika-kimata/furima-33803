@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     unless @item.user_id == current_user.id
-      redirect_to root_path
+      redirect_to '/users/sign_in'
     end
     if @item.save
       redirect_to root_path
