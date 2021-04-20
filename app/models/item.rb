@@ -20,7 +20,7 @@ class Item < ApplicationRecord
   end
 
   # カテゴリー、商品の状態、配送料の負担、発送元の地域、発送までの日数
-  with_options numericality: { greater_than_or_equal_to:1, message: 'が未選択です。' } do
+  with_options numericality: { greater_than_or_equal_to: 1, message: 'が未選択です。' } do
     validates :category_id
     validates :status_id
     validates :shipping_charges_id
