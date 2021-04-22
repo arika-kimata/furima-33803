@@ -1,9 +1,9 @@
 class ItemOrder
   include ActiveModel::Model
-  attr_accessor :postcode, :prefectures_id, :municipality, :address, :building, :phone_number, :user_id, :item_id
+  attr_accessor :tokun, :postcode, :prefectures_id, :municipality, :address, :building, :phone_number, :user_id, :item_id
 
   with_options presence: true do
-    validates :postcode, :municipality, :address, :building
+    validates :tokun, :postcode, :municipality, :address, :building
     validates :prefecture_id, numericality: { greater_than_or_equal_to: 1, message: 'が未選択です。' }
     validates :phone_number, format: { with: /\A\d{11}\z/ }
     with_options format: { with: /\A\d{3}[-]\d{4}\z/ } do
