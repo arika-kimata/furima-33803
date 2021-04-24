@@ -4,20 +4,20 @@ class OrdersController < ApplicationController
 
   def index
     if user_signed_in? && current_user.id != @item.user_id && @item.order == nil
-      @item_order = ItemOrder.new
+      @order_item = OrderItem.new
     else
       redirect_to root_path
     end
   end
 
   def create
-    @item_order = ItemOrder.new(order_params)
-    if @item_order.valid?
+    @order_item = OrderItem.new(order_params)
+    if @order_item.valid?
       pay_item
-      @item_order.save
+      @order_item.save
       return redirect_to root_path
     else
-      render action: :index
+      render :index
     end
   end
 
@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:item_order).permit(:postcode, :prefecture_id, :municipality, :municipality, :building, :phone_number).merge(token: params[:token], item_id: params[:item_id], user_id: current_user.id )
+    params.permit(:postcode, :prefectures_id, :municipality, :municipality, :building, :phone_number).merge(token: params[:token], item_id: params[:item_id], user_id: current_user.id )
   end
 
   def pay_item
