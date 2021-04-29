@@ -3,7 +3,7 @@ class OrderItem
   attr_accessor :token, :postcode, :prefectures_id, :municipality, :address, :building, :phone_number, :user_id, :item_id
 
   with_options presence: true do
-    validates :token, :postcode, :municipality, :address, :building
+    validates :token, :postcode, :municipality, :address
     validates :prefectures_id, numericality: { greater_than_or_equal_to: 0, message: 'が未選択です。' }
     validates :phone_number, format: { with: /\A\d{11}\z/, message: 'は、半角数字で入力して下さい。'}
     with_options format: { with: /\A\d{3}[-]\d{4}\z/ , message: 'は、半角数字で入力して下さい。'} do
