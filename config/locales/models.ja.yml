@@ -6,6 +6,8 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: 次回から自動的にログイン
+  actibemodel:
+    attributes:
       order_item:
         token: クレジットカードの情報
         postcode: 郵便番号
