@@ -4,8 +4,8 @@ class OrderItem
 
   with_options presence: true do
     validates :user_id, :item_id, :token, :postcode, :municipality, :address
-    validates :prefectures_id, numericality: { greater_than_or_equal_to: 0, message: 'が未選択です。' }
-    validates :phone_number, format: { with: /\A\d{11}\z/, message: 'は、半角数字で入力して下さい。' }
+    validates :prefectures_id, numericality: { greater_than_or_equal_to: 1, message: 'が未選択です。' }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'は、半角数字で入力して下さい。' }
     with_options format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'は、半角数字で入力し、半角ハイフンを含めて下さい。' } do
       validates :postcode, length: { is: 8, message: 'は、ハイフンを含む８桁で入力して下さい。' }
     end
