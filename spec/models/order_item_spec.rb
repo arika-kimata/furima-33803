@@ -78,7 +78,7 @@ RSpec.describe OrderItem, type: :model do
       it ' phone_numberが空だと購入できない ' do
         @order_item.phone_number = ''
         @order_item.valid?
-        expect(@order_item.errors.full_messages).to include('電話番号が入力されていません。','電話番号は、半角数字で入力して下さい。')
+        expect(@order_item.errors.full_messages).to include('電話番号が入力されていません。', '電話番号は、半角数字で入力して下さい。')
       end
 
       it ' phone_numberが11桁でなければ購入できない ' do
