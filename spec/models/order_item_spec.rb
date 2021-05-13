@@ -42,19 +42,19 @@ RSpec.describe OrderItem, type: :model do
       it ' 郵便番号が空だと購入ができない ' do
         @order_item.postcode = ''
         @order_item.valid?
-        expect(@order_item.errors.full_messages).to include('郵便番号は、半角数字で入力し、半角ハイフンを含めて下さい。', '郵便番号は、ハイフンを含む８桁で入力して下さい。')
+        expect(@order_item.errors.full_messages).to include('郵便番号が入力されていません。','郵便番号は半角数字で入力し、半角ハイフンを含めて下さい。', '郵便番号は、半角ハイフンを含む８桁で入力して下さい。')
       end
 
       it ' 郵便番号にハイフンがないと登録できない ' do
         @order_item.postcode = '12345678'
         @order_item.valid?
-        expect(@order_item.errors.full_messages).to include('郵便番号は、半角数字で入力し、半角ハイフンを含めて下さい。')
+        expect(@order_item.errors.full_messages).to include('郵便番号は半角数字で入力し、半角ハイフンを含めて下さい。')
       end
 
       it ' 郵便番号が8桁でないと購入できない ' do
         @order_item.postcode = '123-458'
         @order_item.valid?
-        expect(@order_item.errors.full_messages).to include('郵便番号は、半角数字で入力し、半角ハイフンを含めて下さい。', '郵便番号は、ハイフンを含む８桁で入力して下さい。')
+        expect(@order_item.errors.full_messages).to include('郵便番号は半角数字で入力し、半角ハイフンを含めて下さい。', '郵便番号は、半角ハイフンを含む８桁で入力して下さい。')
       end
 
       it ' prefectures_idが空だと購入できない ' do
