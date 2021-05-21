@@ -34,6 +34,11 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'faker'
+  gem 'capistrano'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
@@ -78,3 +83,13 @@ gem 'active_hash'
 gem 'payjp'
 
 gem "aws-sdk-s3", require: false
+
+require "capistrano/setup"
+require "capistrano/deploy"
+require 'capistrano/rbenv'
+require 'capistrano/bundler'
+require 'capistrano/rails/assets'
+require 'capistrano/rails/migrations'
+require 'capistrano3/unicorn'
+
+Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
