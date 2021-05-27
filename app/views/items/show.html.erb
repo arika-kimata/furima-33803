@@ -74,18 +74,33 @@
   </div>
 
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
-      <p class="comment-warn">
-        相手のことを考え丁寧なコメントを心がけましょう。
-        <br>
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      </p>
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form>
+    <div id="comments">
+      <div class="comments_lists">
+        <% @messages.each do |message| %>
+          <div class="comments_top">
+            <div><%= message.user.nickname %></div>
+            <div><%= l message.created_at %></div>
+          </div>
+          <div class="comments_bottom">
+            <div><%= message.text %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+      <% if signed_in? %>
+        <%= form_with(model: [@item, @message], local: true) do |f| %>
+          <%= f.text_area :text, class: "comment-text" %>
+          <p class="comment-warn">
+            相手のことを考え丁寧なコメントを心がけましょう。
+            <br>
+            不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          </p>
+          <button type="submit" class="comment-btn">
+            <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+            <span>コメントする<span>
+          </button>
+        <% end%>
+      <% end %>
   </div>
   <div class="links">
     <a href="#" class="change-item-btn">
