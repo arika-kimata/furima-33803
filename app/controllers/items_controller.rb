@@ -23,6 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    @message = Message.new
+    @messages = @item.messages
   end
 
   def edit
