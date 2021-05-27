@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
     @messages = @item.messages.includes(:user).order('created_at DESC')
     if @message.valid? 
       @message.save
-      ActionCable.server.broadcast 'message_channel', content: @message, nickname: @message.user.nickname, time: @message.created_at.strftime("%Y/%m/%d %H:%M:%S"), id: @item.id
+      ActionCable.server.broadcast 'message_channel', content: @message, nickname: @message.user.nickname, time: @message.created_at, id: @item.id
     else
       render "items/show"
     end
