@@ -47,7 +47,7 @@
  - belongs_to :user
  - has_one :address
  
- ## address テーブル
+## address テーブル
 
 | Column           | Type    | Options                            |
 | ---------------- | ------- | ---------------------------------- |
@@ -62,3 +62,14 @@
 ### Association
  - belongs_to :buy
 
+## messageテーブル
+
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| text   | string     | nill:false                     |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
+
+### Association
+ - belongs_to :user
+ - belongs_to :item
