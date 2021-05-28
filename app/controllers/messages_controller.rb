@@ -5,11 +5,10 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @item = Item.find(params[:item_id])
     @messages = @item.messages.includes(:user).order('created_at DESC')
-    if @message.valid? 
+    if @message.valid?
       @message.save
-      ActionCable.server.broadcast 'message_channel', content: @message, nickname: @message.user.nickname, time: @message.created_at, id: @item.id
-    else
-      render "items/show"
+      ActionCable.server.broadcast 'message_channel', message: @message, nickname: @message.user.nickname, time: @message.created_at, id: @item.id
+      #redirect_to item_path(@item.id)
     end
   end
 

@@ -75,21 +75,22 @@
 
   <div class="comment-box">
     <div id="comments">
-      <div class="comments_lists">
-        <% @messages.each do |message| %>
+    </div>
+      <% @messages.each do |message| %>
+        <div class="comments_lists">
           <div class="comments_top">
             <div><%= message.user.nickname %></div>
             <div><%= l message.created_at %></div>
           </div>
           <div class="comments_bottom">
-            <div><%= message.text %></div>
+            <p><%= message.text %></p>
           </div>
-        <% end %>
-      </div>
-    </div>
+        </div>
+      <% end %>
+      <script type="javascript/channels" src="message_channel.js"></script>
       <% if signed_in? %>
         <%= form_with(model: [@item, @message], local: true) do |f| %>
-          <%= f.text_area :text, class: "comment-text" %>
+          <%= f.text_area :text, class: "comment-text", id: "comment_text" %>
           <p class="comment-warn">
             相手のことを考え丁寧なコメントを心がけましょう。
             <br>
