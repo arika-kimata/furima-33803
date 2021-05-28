@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @message = Message.new
-    @messages = @item.messages
+    @messages = @item.messages.order('created_at DESC')
   end
 
   def edit
