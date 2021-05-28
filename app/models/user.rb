@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # アソシエーション
   has_many :items
   has_many :orders
+  has_many :messages
 
   # バリデーション
   devise :database_authenticatable, :registerable,
